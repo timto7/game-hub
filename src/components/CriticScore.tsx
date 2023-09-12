@@ -9,7 +9,7 @@ interface Props {
 const CriticScore = ({ score }: Props) => {
   const color = useMemo(() => {
     if (score > 75) return 'green';
-    if (score > 60) return 'green';
+    if (score > 60) return 'yellow';
     return '';
   }, []);
 
