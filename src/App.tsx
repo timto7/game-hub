@@ -40,7 +40,7 @@ function App() {
         />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" marginTop={2} paddingX={5}>
+        <GridItem area="aside" marginTop={1} paddingX={5}>
           <GenreList
             onSelectGenre={(genre) =>
               setGameQuery((prev) => ({ ...prev, genre }))
