@@ -9,6 +9,7 @@ import NavBar from './components/NavBar';
 import { Platform } from './hooks/useGames';
 import PlatformSelector from './components/PlatformSelector';
 import SortSelector from './components/SortSelector';
+import GameHeading from './components/GameHeading';
 
 export interface GameQuery {
   genre: Genre | null;
@@ -39,7 +40,7 @@ function App() {
         />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" paddingX={5}>
+        <GridItem area="aside" marginTop={2} paddingX={5}>
           <GenreList
             onSelectGenre={(genre) =>
               setGameQuery((prev) => ({ ...prev, genre }))
@@ -49,22 +50,25 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Flex paddingLeft={10}>
-          <Box marginRight={5}>
-            <PlatformSelector
-              onSelectPlatform={(platform) =>
-                setGameQuery((prev) => ({ ...prev, platform }))
+        <Box marginLeft={10}>
+          <GameHeading gameQuery={gameQuery} />
+          <Flex>
+            <Box marginRight={5}>
+              <PlatformSelector
+                onSelectPlatform={(platform) =>
+                  setGameQuery((prev) => ({ ...prev, platform }))
+                }
+                selectedPlatform={gameQuery.platform}
+              />
+            </Box>
+            <SortSelector
+              onSelectSortOrder={(sortOrder) =>
+                setGameQuery((prev) => ({ ...prev, sortOrder }))
               }
-              selectedPlatform={gameQuery.platform}
+              sortOrder={gameQuery.sortOrder}
             />
-          </Box>
-          <SortSelector
-            onSelectSortOrder={(sortOrder) =>
-              setGameQuery((prev) => ({ ...prev, sortOrder }))
-            }
-            sortOrder={gameQuery.sortOrder}
-          />
-        </Flex>
+          </Flex>
+        </Box>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
